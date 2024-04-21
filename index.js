@@ -31,7 +31,7 @@ function sendEmail(post) {
     to: "omelihtolunay@gmail.com", // Statik alıcı e-posta adresi
     subject: "Check tearadio.co!",
     text: "You've got a new notification at tearadio.co: " + post.title,
-    html: `<h3>You've got a new notification at tearadio.co</h3><p>${post.content}</p>`
+    html: `<h3>You've got a new notification at tearadio.co</h3>`
   };
 
   return transporter.sendMail(mailOptions);
