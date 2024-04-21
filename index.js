@@ -38,19 +38,20 @@ function sendEmail(post) {
 }
 
 app.post('/posts', (req, res) => {
-  const post = req.body;
-  posts.push(post);
+    const post = req.body;
+    posts.push(post);
+    
+    sendEmail(post)
+      .then(result => {
+        console.log('Email sent:', result);
+        res.status(201).send(post);
+      })
+      .catch(err => {
+        console.error('Error sending email:', err);
+        res.status(500).send({ error: 'Failed to send email', details: err });
+      });
+  });
   
-  sendEmail(post)
-    .then(result => {
-      console.log('Email sent:', result);
-      res.status(201).send(post);
-    })
-    .catch(err => {
-      console.log('Error sending email:', err);
-      res.status(500).send({error: 'Failed to send email'});
-    });
-});
 
 app.delete('/posts/:id', (req, res) => {
   const { id } = req.params;
