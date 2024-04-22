@@ -35,12 +35,14 @@ function sendEmail(post) {
       from: "gunnerwinniaird@gmail.com",
       to: "omelihtolunay@gmail.com, freddie@oaagency.com", // Statik alıcı e-posta adresi
       subject: subjectLine,
-      text: `You've got a new notification at tearadio.co: ${post.content}`, // Post içeriği
-      html: `<h3>You've got a new notification at tearadio.co</h3><p>${post.content}</p>` // HTML içerik
+      text: `You've got a new notification at tearadio.co: `, // Post içeriği
+      html: `<h3>You've got a new notification at tearadio.co</h3>
+             <p>Click <a href="https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app/notifications">here</a> to view your notification.</p>` // HTML içerik updated
     };
   
     return transporter.sendMail(mailOptions);
 }
+
 
 app.post('/posts', (req, res) => {
     const { title, content } = req.body;
