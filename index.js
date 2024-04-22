@@ -37,7 +37,7 @@ function sendEmail(post) {
         subject: subjectLine,
         text: `You've got a new notification at tearadio.co: `, // Post content
         html: `<h3>You've got a new notification at tearadio.co</h3>
-               <p>Click <a href="https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app/notifications">here</a> to view your notification.</p>` // HTML content updated
+               <p>Click <a href="https://tearadio-staff.vercel.app/notifications">here</a> to view your notification.</p>` // HTML content updated
       };
       
   
