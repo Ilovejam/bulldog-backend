@@ -8,10 +8,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: 'https://park14.tearadio.co',
+    origin: ['https://park14.tearadio.co', 'https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     optionsSuccessStatus: 200
 }));
+
 
 app.use(express.json());
 
