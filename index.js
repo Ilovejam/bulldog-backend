@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app/notifications
 app.use(cors({
-    origin: ['https://park14.tearadio.co', 'https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app','https://tearadio-staff.vercel.app/notifications'],
+    origin: ['https://park14.tearadio.co', 'https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app','https://tearadio-staff.vercel.app'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     optionsSuccessStatus: 200
 }));
@@ -36,10 +36,10 @@ function sendEmail(post) {
         to: "omelihtolunay@gmail.com, freddie@oaagency.com", // Static recipient email address
         subject: subjectLine,
         text: `You've got a new notification at tearadio.co: `, // Post content
-        html: `<h3>You've got a new notification at tearadio.co</h3>
-               <p>Click <a href="https://tearadio-staff.vercel.app/notifications">here</a> to view your notification.</p>` // HTML content updated
-      };
-      
+        html: `<h3>You've got a new notification at <strong>tearadio</strong></h3>
+               <p>Click <a href="https://tearadio-staff.vercel.app/notifications">here</a> to view your notification.</p>` // HTML content updated to make tearadio.co bold
+    };
+    
   
     return transporter.sendMail(mailOptions);
 }
