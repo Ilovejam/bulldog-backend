@@ -30,13 +30,13 @@ const transporter = nodemailer.createTransport({
 // Mail gönderme fonksiyonu
 function sendEmail(post) {
     // Post'ta title olup olmadığını kontrol et
-    const subjectLine = post.title ? `New post: ${post.title}` : "Check tearadio.co!";
+    const subjectLine = post.title ? `The Bulldog New Notification: ${post.title}` : "Check tearadio.co!";
     const mailOptions = {
         from: "gunnerwinniaird@gmail.com",
         to: "omelihtolunay@gmail.com, freddie@oaagency.com", // Static recipient email address
         subject: subjectLine,
-        text: `You've got a new notification at tearadio.co: `, // Post content
-        html: `<h3>You've got a new notification at <strong>tearadio</strong></h3>
+        text: `You've got a new notification at Tea Radio: `, // Post content
+        html: `<h3>You've got a new notification at <strong>Tea Radio</strong></h3>
                <p>Click <a href="https://tearadio-staff.vercel.app/notifications">here</a> to view your notification.</p>` // HTML content updated to make tearadio.co bold
     };
     
