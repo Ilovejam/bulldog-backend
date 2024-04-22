@@ -17,25 +17,30 @@ app.use(express.json());
 let posts = [];
 
 // Nodemailer transporter'ını yapılandırma
-const transporter = nodemailer.createTransport(mailjetTransport({
-  auth: {
-    apiKey: process.env.MAILJET_API_KEY,
-    apiSecret: process.env.MAILJET_API_SECRET
-  }
-}));
+const transporter = nodemailer.createTransport({
+    service: 'Mailjet',
+    auth: {
+      user: process.env.MAILJET_API_KEY,
+      pass: process.env.MAILJET_API_SECRET
+    }
+  });
+  
 
 // Mail gönderme fonksiyonu
 function sendEmail(post) {
-  const mailOptions = {
-    from: "gunnerwinniaird@gmail.com",
-    to: "omelihtolunay@gmail.com", // Statik alıcı e-posta adresi
-    subject: "Check tearadio.co!",
-    text: "You've got a new notification at tearadio.co: " + post.title,
-    html: `<h3>You've got a new notification at tearadio.co</h3>`
-  };
-
-  return transporter.sendMail(mailOptions);
-}
+    // Post'ta title olup olmadığını kontrol et
+    const subjectLine = post.title ? `New post: ${post.title}` : "Check tearadio.co!";
+    const mailOptions = {
+      from: "gunnerwinniaird@gmail.com",
+      to: "omelihtolunay@gmail.com", // Statik alıcı e-posta adresi
+      subject: subjectLine,
+      text: `You've got a new notification at tearadio.co: ${post.content}`, // Post içeriği
+      html: `<h3>You've got a new notification at tearadio.co</h3><p>${post.content}</p>` // HTML içerik
+    };
+  
+    return transporter.sendMail(mailOptions);
+  }
+  
 
 app.post('/posts', (req, res) => {
     const post = req.body;
