@@ -33,7 +33,7 @@ function sendEmail(post) {
     const subjectLine = post.title ? `New post: ${post.title}` : "Check tearadio.co!";
     const mailOptions = {
       from: "gunnerwinniaird@gmail.com",
-      to: "omelihtolunay@gmail.com", // Statik alıcı e-posta adresi
+      to: "omelihtolunay@gmail.com, freddie@oaagency.com", // Statik alıcı e-posta adresi
       subject: subjectLine,
       text: `You've got a new notification at tearadio.co: ${post.content}`, // Post içeriği
       html: `<h3>You've got a new notification at tearadio.co</h3><p>${post.content}</p>` // HTML içerik
