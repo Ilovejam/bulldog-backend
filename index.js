@@ -6,9 +6,9 @@ const mailjetTransport = require('nodemailer-mailjet-transport');
 
 const app = express();
 const port = process.env.PORT || 3000;
-
+https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app/notifications
 app.use(cors({
-    origin: ['https://park14.tearadio.co', 'https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app'],
+    origin: ['https://park14.tearadio.co', 'https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app','https://tearadio-staff.vercel.app/notifications'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     optionsSuccessStatus: 200
 }));
@@ -32,13 +32,14 @@ function sendEmail(post) {
     // Post'ta title olup olmadığını kontrol et
     const subjectLine = post.title ? `New post: ${post.title}` : "Check tearadio.co!";
     const mailOptions = {
-      from: "gunnerwinniaird@gmail.com",
-      to: "omelihtolunay@gmail.com, freddie@oaagency.com", // Statik alıcı e-posta adresi
-      subject: subjectLine,
-      text: `You've got a new notification at tearadio.co: `, // Post içeriği
-      html: `<h3>You've got a new notification at tearadio.co</h3>
-             <p>Click <a href="https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app/notifications">here</a> to view your notification.</p>` // HTML içerik updated
-    };
+        from: "gunnerwinniaird@gmail.com",
+        to: "omelihtolunay@gmail.com, freddie@oaagency.com", // Static recipient email address
+        subject: subjectLine,
+        text: `You've got a new notification at tearadio.co: `, // Post content
+        html: `<h3>You've got a new notification at tearadio.co</h3>
+               <p>Click <a href="https://tearadio-staff-wrhr-3j689unce-ilovejams-projects.vercel.app/notifications">here</a> to view your notification.</p>` // HTML content updated
+      };
+      
   
     return transporter.sendMail(mailOptions);
 }
