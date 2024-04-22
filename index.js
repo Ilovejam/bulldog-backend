@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 const mailjetTransport = require('nodemailer-mailjet-transport');
-const { v4: uuidv4 } = require('uuid');  // UUID modülünü dahil edin
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -64,8 +64,8 @@ function sendEmail(post) {
       })
       .catch(err => {
         console.error('Error sending email:', err);
-        res.status(500).json({ error: 'Failed to send email', details: err });
-      });
+        res.status(500).json({ error: 'An error occurred while sending the email. Please try again later.' });
+      });      
   });
   
   

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
-  },  
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "express": "^4.19.2",
     "node-mailjet": "^6.0.5",
     "nodemailer": "^6.9.13",
-    "nodemailer-mailjet-transport": "^1.0.4"
+    "nodemailer-mailjet-transport": "^1.0.4",
+    "uuid": "^9.0.1"
   }
 }
