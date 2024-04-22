@@ -3,7 +3,6 @@ const cors = require('cors');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 const mailjetTransport = require('nodemailer-mailjet-transport');
-const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,8 +23,7 @@ const transporter = nodemailer.createTransport({
       user: process.env.MAILJET_API_KEY,
       pass: process.env.MAILJET_API_SECRET
     }
-  });
-  
+});
 
 // Mail gönderme fonksiyonu
 function sendEmail(post) {
@@ -40,17 +38,15 @@ function sendEmail(post) {
     };
   
     return transporter.sendMail(mailOptions);
-  }
-  
+}
 
-  app.post('/posts', (req, res) => {
+app.post('/posts', (req, res) => {
     const { title, content } = req.body;
     if (!title || !content) {
       return res.status(400).json({ error: 'Title and content are required' });
     }
   
     const post = {
-      id: uuidv4(), // Her post için benzersiz bir ID oluştur
       title,
       content
     };
@@ -66,26 +62,24 @@ function sendEmail(post) {
         console.error('Error sending email:', err);
         res.status(500).json({ error: 'An error occurred while sending the email. Please try again later.' });
       });      
-  });
+});
   
-  
-
 app.delete('/posts/:id', (req, res) => {
-  const { id } = req.params;
-  posts = posts.filter(post => post.id !== id);
-  res.status(200).send('Post deleted');
+    const { id } = req.params;
+    posts = posts.filter(post => post.id !== id);
+    res.status(200).send('Post deleted');
 });
 
 app.get('/posts', (req, res) => {
-  res.status(200).send(posts);
+    res.status(200).json(posts);
 });
 
 app.get('/test', (req, res) => {
-  res.send('Yeah');
+    res.send('Yeah');
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
 
 module.exports = app;
