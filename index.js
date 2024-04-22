@@ -30,7 +30,7 @@ const transporter = nodemailer.createTransport({
 // Mail gönderme fonksiyonu
 function sendEmail(post) {
     // Post'ta title olup olmadığını kontrol et
-    const subjectLine = post.title ? `${post.title}` : "Check tearadio.co!";
+    const subjectLine = post.title ? `The Bulldog ${post.title}` : "Check tearadio.co!";
     const mailOptions = {
         from: "gunnerwinniaird@gmail.com",
         to: "omelihtolunay@gmail.com, freddie@oaagency.com", // Static recipient email address
