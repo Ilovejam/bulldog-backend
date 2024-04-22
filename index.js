@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 const mailjetTransport = require('nodemailer-mailjet-transport');
+const { v4: uuidv4 } = require('uuid');  // UUID modülünü dahil edin
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -42,20 +43,31 @@ function sendEmail(post) {
   }
   
 
-app.post('/posts', (req, res) => {
-    const post = req.body;
+  app.post('/posts', (req, res) => {
+    const { title, content } = req.body;
+    if (!title || !content) {
+      return res.status(400).json({ error: 'Title and content are required' });
+    }
+  
+    const post = {
+      id: uuidv4(), // Her post için benzersiz bir ID oluştur
+      title,
+      content
+    };
+  
     posts.push(post);
-    
+  
     sendEmail(post)
       .then(result => {
         console.log('Email sent:', result);
-        res.status(201).send(post);
+        res.status(201).json(post);
       })
       .catch(err => {
         console.error('Error sending email:', err);
-        res.status(500).send({ error: 'Failed to send email', details: err });
+        res.status(500).json({ error: 'Failed to send email', details: err });
       });
   });
+  
   
 
 app.delete('/posts/:id', (req, res) => {
