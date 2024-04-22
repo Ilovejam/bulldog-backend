@@ -8,10 +8,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://park14.tearadio.co',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     optionsSuccessStatus: 200
 }));
+
 app.use(express.json());
 
 let posts = [];
