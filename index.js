@@ -33,7 +33,7 @@ function sendEmail(post) {
     const subjectLine = post.title ? `The Bulldog ${post.title}` : "Check tearadio.co!";
     const mailOptions = {
         from: "gunnerwinniaird@gmail.com",
-        to: "omelihtolunay@gmail.com, freddie@oaagency.com", // Static recipient email address
+        to: "omelihtolunay@gmail.com, clp1995@gmail.com, freddie@oaagency.com", // Static recipient email address
         subject: subjectLine,
         text: `You've got a new notification at Tea Radio: `, // Post content
         html: `<h3>You've got a new notification at <strong>Tea Radio</strong></h3>
